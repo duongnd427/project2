@@ -1,0 +1,43 @@
+.startpage {
+    margin-top: 100px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.welcome {
+    font-family: 'Times New Roman';
+    font-weight: bold;
+    text-align: center;
+    font-size: 4ch;
+    float: left;
+    width: 70%;
+    padding: 3%;
+    background-color: aqua
+}
+
+.signup {
+    padding: 2%;
+    float: right;
+    width: auto;
+    background-color: rgb(197, 240, 118)
+}
+
+.formgr {
+    display: block;
+    margin: 10px;
+}
+
+.button {
+    text-align: center;
+    margin: 10px;
+}
+
+.login {
+    padding-top: 10%
+}
+
+.logininput div{
+    padding: 1%;
+    display: inline-block;
+    font-size: 1ch;
+}
