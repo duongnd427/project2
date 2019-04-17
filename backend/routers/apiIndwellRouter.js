@@ -11,14 +11,17 @@ indwellRouter.get('/indwell', (req, res) => {
     });
 });
 
-// indwellRouter.post('/indwell', (req, res) => {
-//     const { dearWard, name, dateOfBird, CMND, placeAllocated , dateAllocated, resident, shelter, dateStart, dateEnd, reason, created_at, status, owner } = req.body;
-//     var sql = "INSERT INTO indwell ( dearWard, name, dateOfBird, CMND, placeAllocated , dateAllocated, resident, shelter, dateStart, dateEnd, reason, created_at, status, owner ) VALUES ?";
-//     var values = [ dearWard, name, dateOfBird, CMND, placeAllocated , dateAllocated, resident, shelter, dateStart, dateEnd, reason, created_at, status, owner ]
-//     mysql.con.query(sql, [values]), (err, indwellCreated) => {
-//         if(err) res.status(500).send({success: 0, err })
-//         else res.send({ success: 1, indwellCreated })
-//     };
-// });
+indwellRouter.post('/indwell', (req, res) => {
+    const { ward, name, dateOfBird, CMND, placeAllocated, dateAllocated, resident, shelter, dateStart, dateEnd, reason, created_at, owner } = req.body;
+    var sql = "INSERT INTO indwell ( ward, name, dateOfBird, CMND, placeAllocated , dateAllocated, resident, shelter, dateStart, dateEnd, reason, created_at, owner ) VALUES ?";
+    var values = [ward, name, dateOfBird, CMND, placeAllocated, dateAllocated, resident, shelter, dateStart, dateEnd, reason, created_at, status, owner]
+    mysql.con.query(sql, [values]), (err, indwellCreated) => {
+        if (err) {
+            console.log(err)
+            res.status(500).send({ success: 0, err })
+        }
+        else res.send({ success: 1, message: indwellCreated })
+    };
+});
 
 module.exports = indwellRouter;

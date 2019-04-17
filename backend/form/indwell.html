@@ -12,25 +12,28 @@
 <body>
     <form>
         <div>
-            <h2>CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM</h>
+            <h2>CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM</h2>
                 <h3>Độc lập - Tự do - Hạnh phúc</h3>
                 <h1>------------</h1>
                 <h3>ĐƠN XIN XÁC NHẬN TẠM TRÚ </h3>
-                <h4>Kính gửi: Công an phường <input type="text" name="CAP" /></h4>
-                <div>Tên tôi là: <input type="text" name='name'></div>
-                <div>Ngày sinh: <input type="date" name='birthday'></div>
-                <div>Số CMND: <input type="number" name='CMND'></div>
-                <div>Ngày cấp: <input type="date" name='dayAlc'></div>
-                <div>Nơi cấp: <input type="text" name='areaAlc'></div>
-                <div>Hộ khẩu thường trú tại: <input type="text" name='resident'></div>
-                <div>Chỗ ở hiện tại: <input type="text" name='shelter'></div>
-                <div>Tôi làm đơn này kính mong CAP <input type="text"> xác nhận cho <br> <textarea></textarea></div>
+                <h4>Kính gửi: Công an phường/xã/thị trấn <input type="text" name="ward" /></h4>
+                <div>Tên tôi là: <input type="text" name='name'/></div>
+                <div>Ngày sinh: <input type="date" name='dateOfBirth'/></div>
+                <div>Số CMND: <input type="number" name='CMND'/></div>
+                <div>Ngày cấp: <input type="date" name='dateAllocated'/></div>
+                <div>Nơi cấp: <input type="text" name='placeAllocated'/></div>
+                <div>Hộ khẩu thường trú tại: <input type="text" name='resident'/></div>
+                <div>Nay tôi làm đơn này kính xin Ban Công an xã/phường/thị trấn cho tôi được đăng ký tạm trú tại <input
+                        type="text" name='shelter'/></div>
+                <div>Từ ngày<input type="date" name='dateStart'/> đến ngày <input type="date" name='dateEnd'/></div>
+                <div>Lý do <textarea name="reason"></textarea></div>
+                <div>Trong thời gian ở địa phương tôi xin hứa thực hiện tốt các nội quy, quy định về an ninh trật tự của
+                    địa phương.<br>Nếu tôi vi phạm tôi xin chịu hoàn toàn trách nhiệm.</div>
                 <div>Tôi xin chân thành cảm ơn!</div>
                 <br>
                 <div>Ngày.....tháng.....năm.......</div>
-        </div>
-
-        <button type='submit'>Gửi</button>
+                <button type='submit'>Gửi</button>
+        </div>       
     </form>
 </body>
 

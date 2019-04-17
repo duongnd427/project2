@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+
 import NavBar from './NavBar';
 import Act from './Act/Act';
-
-import { BrowserRouter, Route } from 'react-router-dom';
+import Indwell from './Act/Indwell/Infor'
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 // import { URL } from '../config';
 
@@ -31,10 +32,14 @@ class HomePage extends Component {
             <BrowserRouter>
                 <div>
                     <NavBar name={this.props.name} />
-                    <Route path="/" exact component={Act} />                </div>
-                </BrowserRouter>
-                );
-            }
-        }
-        
+                    <Switch>
+                        <Route exact path='/' component={Act} />
+                        <Route exact path='/indwell' component={Indwell} />
+                    </Switch>
+                </div>
+            </BrowserRouter>
+        );
+    }
+}
+
 export default HomePage;
