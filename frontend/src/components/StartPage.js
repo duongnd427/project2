@@ -21,7 +21,8 @@ export default class StartPage extends Component {
             .post(`${URL}/api/users`, {
                 cmnd: this.state.cmnd,
                 name: this.state.name,
-                password: this.state.password
+                password: this.state.password,
+                repassword: this.state.repassword
             }, {
                     validateStatus: (status) => {
                         return status >= 200 && status < 500
@@ -35,7 +36,7 @@ export default class StartPage extends Component {
                     //     name: res.data.user[0].name
                     // }               
                 } else if (response.data.success === -1) {
-                    alert('Bạn chưa nhập đủ thông tin đăng ký')
+                    alert('Sai hoặc thiếu thông tin đăng ký')
                 }
                 else {
                     alert('Số điện thoại đã được đăng ký')
@@ -59,7 +60,7 @@ export default class StartPage extends Component {
             .then(response => {
                 if (response.data.success === 1) {
                     this.setState({ data: response.data })
-                    console.log(response.data)
+                    // console.log(response.data)
                     window.location.href = '/'
                     // alert('dang nhap thanh cong')
                 }
@@ -86,6 +87,7 @@ export default class StartPage extends Component {
                         <p class='formgr'>Số CMND</p><input onChange={this._getUser} name="cmnd" type="text" />
                         <p class='formgr'>Họ tên</p><input onChange={this._getUser} name="name" type="text" />
                         <p class='formgr'>Mật khẩu</p><input onChange={this._getUser} name="password" type='password' />
+                        <p class='formgr'>Nhập lại mật khẩu</p><input onChange={this._getUser} name="repassword" type='password' />
                         <div class='button'><button className="btn btn-info fixed" type="submit">Đăng ký</button></div>
                     </form>
                 </div>

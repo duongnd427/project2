@@ -21,7 +21,7 @@ export default class Profile extends Component {
         return (
             <div className="profile-panel float-md-right">
                 <div>
-                    <span className='navbar-text text-warning mx-auto'>Welcome, {this.props.name}&nbsp;&nbsp;&nbsp;</span>
+                    <span className='navbar-text text-warning mx-auto'>Welcome, {this.props.name}</span>
                     <button className='btn btn-success' onClick={this.logOut} >Đăng xuất</button>
                 </div>
             </div>

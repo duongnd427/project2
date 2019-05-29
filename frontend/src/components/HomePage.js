@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import NavBar from './NavBar';
-import Act from './Act/Act';
-import Indwell from './Act/Indwell/Infor'
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Act from './Act';
+import Indwell from './Indwell/Infor';
+import Absent from './Absent';
+import ViewInd from './view/ViewInd';
+import ViewAbt from './view/ViewAbt';
+import EditInd from './view/EditInd';
 
 // import { URL } from '../config';
 
@@ -35,6 +39,10 @@ class HomePage extends Component {
                     <Switch>
                         <Route exact path='/' component={Act} />
                         <Route exact path='/indwell' component={Indwell} />
+                        <Route exact path='/absent' component={Absent} />
+                        <Route exact path='/viewind' component={ViewInd} />
+                        <Route exact path='/viewabt' component={ViewAbt} />
+                        <Route exact path='/editind' component={EditInd} />
                     </Switch>
                 </div>
             </BrowserRouter>

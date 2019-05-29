@@ -27,7 +27,7 @@ class App extends Component {
     }
 
     render() {
-        const display = (this.state.name) ? <HomePage name={this.state.name} />
+        const display = (this.state.name) ? <HomePage name={this.state.name} cmnd={this.state.cmnd}/>
             : <StartPage />
         return (
                 <div className="App container-fluid">

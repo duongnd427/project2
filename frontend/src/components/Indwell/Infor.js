@@ -4,7 +4,7 @@ import Indwell from './Indwell'
 class Infor extends Component {
     render() {
         return (
-            <div>
+            <div className='col-7 align-middle'>
                 <Indwell/>
             </div>
         );

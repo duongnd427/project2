@@ -18,8 +18,11 @@ userRouter.get('/', (req, res) => {
 })
 
 userRouter.post('/', (req, res) => {
-    const { cmnd, name, password } = req.body;
-    if (cmnd == null || name == null || password == null) res.send({ success: -1, message: 'thieu truong' })
+    const { cmnd, name, password, repassword } = req.body;
+    if (cmnd == null || name == null || password == null || repassword == null) res.send({ success: -1, message: 'thieu truong' })
+    if(password != repassword) {
+        res.send({success: 0, message:'sai mat khau'})
+    }
     else {
         var sql = "INSERT INTO user (cmnd, name, password) VALUES ?";
         var values = [[cmnd, name, password]];
