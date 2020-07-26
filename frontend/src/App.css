@@ -48,7 +48,7 @@
 }
 
 .navbar {
-    float: right;
+    background-color: crimson
 }
 
 .form {
@@ -56,5 +56,11 @@
 }
 
 div {
+    /* margin: 1%; */
+    font-weight: bold
+}
+
+.logout {
+    float: right;
     margin: 1%;
 }

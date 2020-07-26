@@ -39,7 +39,7 @@ export default class StartPage extends Component {
                     alert('Sai hoặc thiếu thông tin đăng ký')
                 }
                 else {
-                    alert('Số điện thoại đã được đăng ký')
+                    alert('Số cmnd đã được đăng ký')
                 }
             })
             .catch(err => console.error(err))

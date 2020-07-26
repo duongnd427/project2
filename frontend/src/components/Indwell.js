@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+// import { URL } from '..../config';
+// import '..../App.css'
 
-class Absent extends Component {
+class Indwell extends Component {
     state = {
         provinces: [],
         districts: [],
@@ -16,18 +18,17 @@ class Absent extends Component {
         })
     }
 
-    newAbsent = (e) => {
+    newIndwell = (e) => {
         e.preventDefault();
         axios.defaults.withCredentials = true;
         axios
-            .post(`http://localhost:1010/api/absent`, {
+            .post(`http://localhost:1010/api/indwell`, {
                 wardp: this.state.wardp,
                 name: this.state.name,
                 dateOfBirth: this.state.dateOfBirth,
-                sex: this.state.sex,
-                nationality: this.state.nationality,
                 CMND: this.state.CMND,
-                passport: this.state.passport,
+                dateAllocated: this.state.dateAllocated,
+                placeAllocated: this.state.placeAllocated,
                 province: this.state.province,
                 district: this.state.district,
                 ward: this.state.ward,
@@ -42,17 +43,16 @@ class Absent extends Component {
                         return status >= 200 && status < 500
                     }
                 })
-            .then(res => {
-                if (res.data.success === 0) {
+            .then(res => {                
+                if (res.data.success === 1) {
+                    alert('Gửi đăng ký thành công')
+                    this.setState({ data: res.data })
+                    console.log(res.data)
+                } else
                     alert('Bạn chưa nhập đủ thông tin đăng ký đơn')
-                } else {
-                    console.log('tam vang thanh cong')
-                    window.location.href = '/viewabt'
-                }
-
             })
             .catch(err => console.error(err))
-            window.location.href = '/viewabt'
+            window.location.href = '/viewind'
     }
 
     componentDidMount = (e) => {
@@ -103,33 +103,38 @@ class Absent extends Component {
         let wdlistIn = this.state.wards.filter(wd => wd.maqh.includes(disltIn[0].maqh))
         return (
             <div>
-                <form onSubmit={this.newAbsent}>
+                <form onSubmit={this.newIndwell}>
                     <h2>CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM</h2>
                     <h3>Độc lập - Tự do - Hạnh phúc</h3>
                     <h1>------------</h1>
-                    <h3>PHIẾU KHAI BÁO TẠM VẮNG </h3>
+                    <h3>ĐƠN XIN XÁC NHẬN TẠM TRÚ </h3>
                     <h4>Kính gửi: Công an phường/xã/thị trấn <input onChange={this._getInfor} type="text" name="wardp" /></h4>
-                    <div>Họ và tên: <input onChange={this._getInfor} type="text" name='name' /></div>
-                    <div>Ngày, tháng, năm sinh: <input onChange={this._getInfor} type="date" name='dateOfBirth' /> Giới tính: <input onChange={this._getInfor} type='text' name='sex' /> Quốc tịch: <input onChange={this._getInfor} type='text' name='nationality' /></div>
-                    <div>CMND số: <input onChange={this._getInfor} type="number" name='CMND' /> Hộ chiếu số: <input onChange={this._getInfor} type='number' name='passport' /></div>
-                    <div>Nơi thường trú/ tạm trú: 
+                    <div>Tên tôi là: <input onChange={this._getInfor} type="text" name='name' /></div>
+                    <div>Ngày sinh: <input onChange={this._getInfor} type="date" name='dateOfBirth' /></div>
+                    <div>Số CMND: <input onChange={this._getInfor} type="number" name='CMND' /></div>
+                    <div>Ngày cấp: <input onChange={this._getInfor} type="date" name='dateAllocated' /></div>
+                    <div>Nơi cấp:
+                        <select onChange={this._getInfor} name='placeAllocated' ref={(input) => this.placeAllocated = input} >
+                            {prlist.map((pro) => <option key={pro.matp} value={pro.name}>{pro.name}</option>)}
+                        </select>
+                    </div>
+                    <div>Hộ khẩu thường trú tại:
                         <div>Tỉnh</div>
-                        <select onChange={this._getInfor} name='province' ref = {(input)=> this.prselected = input} onClick={this.getDistricts} >
+                        <select onChange={this._getInfor} name='province' ref={(input) => this.prselected = input} onClick={this.getDistricts}>
                             {prlist.map((pro) => <option key={pro.matp} value={pro.name}>{pro.name}</option>)}
                         </select>
                         <div>Huyện/ thị trấn</div>
-                        <select onChange={this._getInfor} name='district' ref = {(input)=> this.diselected = input} onClick={this.getWards} >
+                        <select onChange={this._getInfor} name='district' ref={(input) => this.diselected = input} onClick={this.getWards}>
                             {dilist.map((di) => <option key={di.maqh} value={di.name}>{di.name}</option>)}
                         </select>
-                        <div>Xã/ phường</div>
-                        <select onChange={this._getInfor} name='ward' ref = {(input)=> this.wdselected = input} >
+                        <div>Chọn xã/ phường</div>
+                        <select onChange={this._getInfor} name='ward' ref={(input) => this.wdselectedIn = input} >
                             {wdlist.map((wd) => <option key={wd.xaid} value={wd.name}>{wd.name}</option>)}
                         </select>
                     </div>
-                    <div>Tạm vắng từ ngày, tháng, năm: <input onChange={this._getInfor} type='date' name='dateStart' /> đến ngày <input onChange={this._getInfor} type='date' name='dateEnd' /> </div>
-                    <div>Lý do tạm vắng <textarea onChange={this._getInfor} name='reason' /> </div>
-                    <div>Nơi đến: 
-                    <div>Tỉnh</div>
+                    <br />
+                    <div>Nay tôi làm đơn này kính xin Ban Công an xã/phường/thị trấn cho tôi được đăng ký tạm trú tại:
+                        <div>Tỉnh</div>
                         <select onChange={this._getInfor} name='provinceIn' ref={(input) => this.prselectedIn = input} onClick={this.getDistricts} >
                             {prlistIn.map((pro) => <option key={pro.matp} value={pro.name}>{pro.name}</option>)}
                         </select>
@@ -142,11 +147,16 @@ class Absent extends Component {
                             {wdlistIn.map((wd) => <option key={wd.xaid} value={wd.name}>{wd.name}</option>)}
                         </select>
                     </div>
+                    <div>Từ ngày<input onChange={this._getInfor} type="date" name='dateStart' /> đến ngày <input onChange={this._getInfor} type="date" name='dateEnd' /></div>
+                    <div>Lý do <textarea onChange={this._getInfor} name="reason"></textarea></div>
+                    <div>Trong thời gian ở địa phương tôi xin hứa thực hiện tốt các nội quy, quy định về an ninh trật tự của
+                    địa phương.Nếu tôi vi phạm tôi xin chịu hoàn toàn trách nhiệm.</div>
+                    <div>Tôi xin chân thành cảm ơn!</div>
                     <button class='button' className="btn btn-info fixed" type="submit" >Gửi</button>
                 </form>
-            </div >
+            </div>
         );
     }
 }
 
-export default Absent;
+export default Indwell;

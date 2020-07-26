@@ -1,8 +1,7 @@
 import axios from 'axios';
 import React, { Component } from 'react'
-// import { Link } from 'react-router-dom';
 
-import { URL } from '../config';
+import { URL } from '../../config';
 
 export default class Profile extends Component {
 
@@ -11,7 +10,7 @@ export default class Profile extends Component {
             .get(`${URL}/api/log/logout`)
             .then(res => {
                 console.log(res.data)
-                window.location.href='/'
+                window.location.href = '/'
             })
             .catch(err => console.error(err))
     }
@@ -19,10 +18,12 @@ export default class Profile extends Component {
     render() {
 
         return (
-            <div className="profile-panel float-md-right">
+            <div className="container col-6">
                 <div>
-                    <span className='navbar-text text-warning mx-auto'>Welcome, {this.props.name}</span>
-                    <button className='btn btn-success' onClick={this.logOut} >Đăng xuất</button>
+                    <div class='navbar-text'>Xin chào, {this.props.name}</div>
+                    <div class='logout'>
+                        <button className='btn btn-success' onClick={this.logOut} >Đăng xuất</button>
+                    </div>
                 </div>
             </div>
         )

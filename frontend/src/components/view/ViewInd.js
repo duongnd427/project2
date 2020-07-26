@@ -6,33 +6,36 @@ import EditInd from './EditInd';
 
 class View extends Component {
     state = {
-        infors: []
+        infors: [],
+        search: ''
     }
 
     componentDidMount = (e) => {
         axios.defaults.withCredentials = true;
         axios
-            .get(`http://localhost:1010/api/indwell`,{
+            .get(`http://localhost:1010/api/indwell`, {
                 owner: this.props.cmnd,
                 password: this.props.password
             })
             .then(res => {
-                // console.log(res.data)
                 if (res.data) {
                     this.setState({
                         infors: res.data
                     })
-                    console.log(res.data)
+                    // console.log(res.data)
                 }
             })
             .catch(err => console.log(err))
     }
 
     render() {
-        const done =  this.state.infors.map(data => <DisplayInd data={data} />);
-        const wait = this.state.infors.map(data => <EditInd data={data} /> );
+        var displayInfors = this.state.infors.filter(dis => dis.status.includes(this.props.search) || dis.ward.includes(this.props.search))
+
+        const done = displayInfors.map(data => <DisplayInd data={data} cmnd={this.props.cmnd} />);
+        const ws = displayInfors.filter(ws => ws.status.includes('Chờ xử lý') || ws.status.includes('Đang xử lý'))
+        const wait = ws.map(data => <EditInd data={data} cmnd={this.props.cmnd} />);
         return (
-            <div>                
+            <div>
                 {done}
                 {wait}
             </div>

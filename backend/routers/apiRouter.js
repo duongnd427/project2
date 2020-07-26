@@ -6,9 +6,10 @@ const indwellRouter = require('./apiIndwellRouter');
 const absentRouter = require('./apiAbsentRouter');
 const logRouter = require('./apiLogRouter');
 const provincesRouter = require('./apiProvinces');
+const districtsRouter = require('./apiDistricts');
+const wardsRouter = require('./apiWards');
 
 apiRouter.use('/', (req, res, next) => {
-    // console.log('mid');
     next();
 });
 
@@ -17,5 +18,7 @@ apiRouter.use('/absent', absentRouter);
 apiRouter.use('/indwell', indwellRouter);
 apiRouter.use('/log', logRouter);
 apiRouter.use('/provinces', provincesRouter);
+apiRouter.use('/districts', districtsRouter);
+apiRouter.use('/wards', wardsRouter);
 
 module.exports = apiRouter;

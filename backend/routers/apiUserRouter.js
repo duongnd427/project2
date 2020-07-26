@@ -21,11 +21,12 @@ userRouter.post('/', (req, res) => {
     const { cmnd, name, password, repassword } = req.body;
     if (cmnd == null || name == null || password == null || repassword == null) res.send({ success: -1, message: 'thieu truong' })
     if(password != repassword) {
-        res.send({success: 0, message:'sai mat khau'})
+        res.send({success: -1, message:'sai mat khau'})
     }
     else {
         var sql = "INSERT INTO user (cmnd, name, password) VALUES ?";
         var values = [[cmnd, name, password]];
+        console.log(values)
         mysql.query(sql, [values], (err, userCreated) => {
             if (err) {
                 console.log(err);
@@ -36,11 +37,5 @@ userRouter.post('/', (req, res) => {
         })
     }
 })
-
-// userRouter.get('/', async (req, res) => {
-//     try {
-//         let userFound = await 
-//     }
-// })
 
 module.exports = userRouter;

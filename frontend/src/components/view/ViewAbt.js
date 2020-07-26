@@ -16,7 +16,7 @@ class ViewAbt extends Component {
                 console.log(res.data)
                 if (res.data) {
                     this.setState({
-                        infors: res.data
+                        infors: res.data,
                     })
                 }
             })
@@ -24,8 +24,11 @@ class ViewAbt extends Component {
     }
 
     render() {
-        const done = this.state.infors.map(data => <DisplayAbt data={data} />);
-        const wait = this.state.infors.map(data => <EditAbt data={data} />);
+        var displayInfors = this.state.infors.filter(dis => dis.status.includes(this.props.search) || dis.ward.includes(this.props.search))
+
+        const done = displayInfors.map(data => <DisplayAbt data={data} cmnd={this.props.cmnd}/>);
+        const ws = displayInfors.filter(ws => ws.status.includes('Chờ xử lý') || ws.status.includes('Đang xử lý'))
+        const wait = ws.map(data => <EditAbt data={data} cmnd={this.props.cmnd} />);
         return (
             <div>
                 {done}
